@@ -22,6 +22,9 @@ const theme = createTheme({
       main: '#f44336',
     },
   },
+  typography: {
+    fontFamily: "Quicksand"
+  }
 });
 
 const router = createBrowserRouter([
@@ -33,7 +36,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
-        loader: landingLoader,
+        loader: landingLoader(queryClient),
       },
       {
         path: 'about',
@@ -50,9 +53,11 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </QueryClientProvider>
     </>
   );
 }

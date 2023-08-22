@@ -1,33 +1,34 @@
 import { useLoaderData } from 'react-router-dom';
 import axios from 'axios';
-import { QueryClient, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import ClothesList from '../components/ClothesList';
 
 const productsSearchURL = `https://fakestoreapi.com/products`;
 
-// const searchClothesQuery = () => {
-//   return {
-//     queryKey: ['search'],
-//     queryFn: async () => {
-//       const response = await axios.get(productsSearchURL)
-//       console.log(response)
-//     }
-//   }
-// }
+const searchClothesQuery = () => {
+  return {
+    queryKey: ['search'],
+    queryFn: async () => {
+      const response = await axios.get(productsSearchURL);
+      const {data} = response
+      console.log(data);
 
+      return data;
+    },
+  };
+};
 
-
-export const loader = async ({params}) => {
-  //const {id} = params;
-  const {data} = await axios.get(`${productsSearchURL}`);
-  console.log(data)
-  
-  return {data};
+export const loader = (queryClient) => async ({ request }) => {
+  //const url = new URL(request.url);
+  //const id = url.searchParams.get('search') || '';
+  return await queryClient.ensureQueryData(searchClothesQuery());
+  ;
 };
 
 const Landing = () => {
-  const {data} = useLoaderData();
+  //const { id } = useLoaderData();
+  const { data } = useQuery(searchClothesQuery());
   return (
     <>
       <ClothesList clothes={data} />

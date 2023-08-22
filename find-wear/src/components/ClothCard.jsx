@@ -9,14 +9,19 @@ import Typography from '@mui/material/Typography';
 export default function MediaCard({ title, description, image }) {
   const [readMore, setReadMore] = React.useState(false);
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia sx={{height: '8rem'}} image={image} title={title} />
+    <Card sx={{maxWidth: 345, minHeight: 400}} >
+      <CardMedia sx={{ height: '18rem' }} image={image} title={title} />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography
+          gutterBottom
+          variant="h5"
+          component="div"
+          sx={{ height: '5rem', mb: '1rem', pb: '2rem' }}
+        >
           {title.split(' ').slice(0, 4).join(' ')}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {readMore ? description : `${description.substring(0, 100)}...`}
+          {readMore ? description : `${description.substring(0, 50)}...`}
           <Button variant="text" onClick={() => setReadMore(!readMore)}>
             {readMore ? 'show less' : 'read more'}
           </Button>

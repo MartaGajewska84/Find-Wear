@@ -5,28 +5,21 @@ import MediaCard from './ClothCard';
 
 const ClothesList = ({ clothes }) => {
   return (
-    <Box sx={{ flexGrow: 1, mt: '2rem' }}>
-      <Box
-        display="flex"
+    <Box sx={{ flexGrow: 1, mt: '2rem', m: {md: '0.5rem'}}}>
+      <Grid
+        disableEqualOverflow
+        container
         justifyContent="center"
         alignItems="center"
-        minHeight="100vh"
+        spacing={{ xs: 3, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 15 }}
       >
-        <Grid
-          container
-          sx={{
-            width: '80%',
-          }}
-          spacing={{ xs: 5, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
-        >
-          {clothes.map((item, index) => (
-            <Grid xs={2} sm={4} md={4} key={index}>
-              <MediaCard key={item.id} {...item} />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+        {clothes.map((item, index) => (
+          <Grid  sm={3} md={4} key={index}>
+            <MediaCard key={item.id} {...item} />
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 };

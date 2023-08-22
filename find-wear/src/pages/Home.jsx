@@ -1,24 +1,32 @@
 import { Outlet, useNavigation } from 'react-router-dom';
 import ButtonAppBar from '../components/NavBar';
 import { Box } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Home = () => {
-  const navigation = useNavigation()
-  console.log(navigation)
-  
+  const navigation = useNavigation();
+  console.log(navigation);
+  const isPageLoading = navigation.state === 'loading';
+  console.log(isPageLoading);
+
   return (
     <>
       <ButtonAppBar />
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          
-        }}
-      >
+
+      {isPageLoading ? (
+        <Box
+          sx={{
+            height: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : (
         <Outlet />
-      </Box>
+      )}
     </>
   );
 };
