@@ -1,9 +1,10 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createTheme, colors, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 
-import { Home, About, Newsletter, Error, Landing } from './pages';
+import { Home, About, Newsletter, Error, Landing, Product } from './pages';
 import { loader as landingLoader } from './pages/Landing';
+import { loader as productLoader } from './pages/Product';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,8 +24,8 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Quicksand"
-  }
+    fontFamily: 'Quicksand',
+  },
 });
 
 const router = createBrowserRouter([
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />,
         loader: landingLoader(queryClient),
+      },
+      {
+        path: 'product/:id',
+        element: <Product />,
+        loader: productLoader(queryClient),
       },
       {
         path: 'about',

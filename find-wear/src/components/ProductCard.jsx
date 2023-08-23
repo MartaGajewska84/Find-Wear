@@ -6,11 +6,11 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function MediaCard({ title, description, image }) {
+export default function MediaCard({ title, description, image, id }) {
   const [readMore, setReadMore] = React.useState(false);
   return (
-    <Card sx={{maxWidth: 345, minHeight: 400}} >
-      <CardMedia sx={{ height: '18rem' }} image={image} title={title} />
+    <Card sx={{ maxWidth: 380, minHeight: 500 }}>
+      <CardMedia sx={{ height: '15rem' }} image={image} title={title} />
       <CardContent>
         <Typography
           gutterBottom
@@ -28,7 +28,9 @@ export default function MediaCard({ title, description, image }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Details</Button>
+        <Button href={`/product/${id}`} size="small">
+          Details
+        </Button>
       </CardActions>
     </Card>
   );

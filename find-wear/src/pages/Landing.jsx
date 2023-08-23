@@ -2,7 +2,7 @@ import { useLoaderData } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
-import ClothesList from '../components/ClothesList';
+import ProductsList from '../components/ProductsList';
 
 const productsSearchURL = `https://fakestoreapi.com/products`;
 
@@ -31,7 +31,7 @@ const Landing = () => {
   const { data } = useQuery(searchClothesQuery());
   return (
     <>
-      <ClothesList clothes={data} />
+      <ProductsList products={data} />
     </>
   );
 };
