@@ -2,6 +2,7 @@ import { Outlet, useNavigation } from 'react-router-dom';
 import ButtonAppBar from '../components/NavBar';
 import { Box } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import Footer from '../components/Footer';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -27,6 +28,7 @@ const Home = () => {
       ) : (
         <Outlet />
       )}
+      <Footer />
     </>
   );
 };
