@@ -1,4 +1,3 @@
-import { useLoaderData } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
@@ -11,7 +10,7 @@ const searchClothesQuery = () => {
     queryKey: ['search'],
     queryFn: async () => {
       const response = await axios.get(productsSearchURL);
-      const {data} = response
+      const { data } = response;
       console.log(data);
 
       return data;
@@ -19,15 +18,13 @@ const searchClothesQuery = () => {
   };
 };
 
-export const loader = (queryClient) => async ({ request }) => {
-  //const url = new URL(request.url);
-  //const id = url.searchParams.get('search') || '';
-  return await queryClient.ensureQueryData(searchClothesQuery());
-  ;
-};
+export const loader =
+  (queryClient) =>
+  async ({ request }) => {
+    return await queryClient.ensureQueryData(searchClothesQuery());
+  };
 
 const Landing = () => {
-  //const { id } = useLoaderData();
   const { data } = useQuery(searchClothesQuery());
   return (
     <>

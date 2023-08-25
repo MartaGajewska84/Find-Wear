@@ -1,7 +1,7 @@
 import { useLoaderData } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import Box from '@mui/material/Box';
+import { Box, Button } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
@@ -70,15 +70,20 @@ const Product = () => {
               Category: {data.category}
             </Typography>
 
-            <Typography variant="body1" sx={{ mb: '1rem', display: 'flex',  }}>
+            <Typography variant="body1" sx={{ mb: '1rem', display: 'flex' }}>
               What our users think :
-              <Rating name="read-only" value={data.rating.rate} readOnly />
-              ({data.rating.count} votes)
+              <Rating name="read-only" value={data.rating.rate} readOnly />(
+              {data.rating.count} votes)
             </Typography>
 
             <Typography variant="body1" component="p">
               {data.description}
             </Typography>
+            <Box mt="2rem">
+              <Button href="/" type="small">
+                Back home
+              </Button>
+            </Box>
           </Grid>
         </Grid>
       </Box>

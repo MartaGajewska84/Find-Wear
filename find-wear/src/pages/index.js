@@ -4,4 +4,5 @@ export {default as Newsletter} from './Newsletter'
 export {default as Error} from './Error'
 export {default as Landing} from './Landing'
 export {default as Product} from './Product'
+export {default as Category} from './Category'
 
